@@ -1,11 +1,8 @@
 import os
 from glob import glob
 import streamlit as st
-from dotenv import load_dotenv
+
 from utils import get_langchain_model, save_uploadedfile
-
-
-load_dotenv(".env")
 
 
 def main():
@@ -23,12 +20,6 @@ def main():
 
         file_names = [_file.name for _file in files]
         btn = st.button("Submit Files")
-
-        st.write("---")
-
-        url_in = st.text_input("Enter URL's with comma seperation")
-        urls = [_url for _url in url_in.split(",")]
-        btn_url = st.button("Submit URL's")
 
         st.write("---")
 
@@ -66,15 +57,6 @@ def main():
                 st.write(response)
         message = {"role": "assistant", "content": response}
         st.session_state.messages.append(message)
-
-    if btn_url and len(urls) > 0:
-        with st.chat_message("assistant"):
-            with st.spinner("Processing URL's....."):
-                st.session_state.agent = get_langchain_model(urls=urls)
-                response = (
-                    f"Processed the following urls: {urls}\n\nPlease ask the questions!"
-                )
-                st.write(response)
 
     if btn_yt_url and len(yt_urls) > 0:
         with st.chat_message("assistant"):
