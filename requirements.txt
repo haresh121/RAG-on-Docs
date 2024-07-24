@@ -5,3 +5,4 @@ python-dotenv==1.0.1
 streamlit==1.29.0
 youtube-transcript-api
 playwright
+pysqlite3-binary
