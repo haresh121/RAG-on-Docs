@@ -3,7 +3,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain.chains import RetrievalQA
 from langchain.memory import ConversationBufferMemory
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from langchain.agents import Tool, initialize_agent
 from langchain.agents.types import AgentType
 from langchain.text_splitter import RecursiveCharacterTextSplitter
