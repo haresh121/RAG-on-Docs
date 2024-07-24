@@ -18,7 +18,7 @@ def get_langchain_model(docs=None, urls=None, yt_urls=None):
     system_message = """
     Act like a Sales Agent for the Apple Vision Pro glasses and answer everything in a pointer format
     This is conversation with a customer i.e. a Human. Answer the questions you get based on the knowledge you have and what you get from the documents."
-    If you don't know the answer, just say that you don't know the answer, don't try to make up an answer.
+    If you don't know the answer, just say that you don't know the answer, don't try to make up an answer."
     Use the internet when required
     """
 
@@ -47,13 +47,6 @@ def get_langchain_model(docs=None, urls=None, yt_urls=None):
         docs_ = loader.load_and_split(text_splitter)
         documents.extend(docs_)
 
-    def parse_single_url(url):
-        print(f"processing {url}")
-        loader = AsyncChromiumLoader(url)
-        html = loader.load()
-        docs_transformed = bs_transformer.transform_documents(html)
-        documents.extend(docs_transformed)
-
     def parse_single_yt_video(url):
         print(f"processing {url}")
         loader = YoutubeLoader.from_youtube_url(url)
@@ -63,9 +56,6 @@ def get_langchain_model(docs=None, urls=None, yt_urls=None):
     if docs is not None:
         for _d in docs:
             parse_single_document(_d)
-    elif urls is not None:
-        for _u in urls:
-            parse_single_url(_u)
 
     elif yt_urls is not None:
         for _u in yt_urls:
