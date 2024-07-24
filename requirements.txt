@@ -1,6 +1,6 @@
 langchain==0.2.11
 langchain_chroma==0.1.2
-langchain_community==0.2.10
+langchain_community
 python-dotenv==1.0.1
 streamlit==1.29.0
 youtube-transcript-api
